@@ -161,7 +161,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **Your Name**
 - GitHub: [@syukx](https://github.com/syukx)
-- LinkedIn: [@syukx](https://www.instagram.com/syukx0?igsh=Nmx3MnJ6b3J5aTRl)
+- Instagram: [@syukx](https://www.instagram.com/syukx0?igsh=Nmx3MnJ6b3J5aTRl)
 - Email: anselmgomes023@gmail.com
 
 ## 🙏 Acknowledgments
