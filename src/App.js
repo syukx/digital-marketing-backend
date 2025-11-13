@@ -42,44 +42,7 @@ const STATS = [
   { number: "24/7", label: "Support Available" },
 ];
 
-const SERVICES_CONST = [
-  {
-    icon: <Search className="w-12 h-12 text-blue-600" />,
-    title: "SEO Optimization",
-    description: "Increase your organic traffic with our advanced SEO strategies.",
-    features: ["Keyword Research", "On-Page SEO", "Link Building", "Technical SEO"],
-  },
-  {
-    icon: <Smartphone className="w-12 h-12 text-purple-600" />,
-    title: "Social Media Marketing",
-    description: "Build your brand presence across all major social platforms.",
-    features: ["Content Strategy", "Community Management", "Paid Advertising", "Analytics"],
-  },
-  {
-    icon: <Mail className="w-12 h-12 text-green-600" />,
-    title: "Email Marketing",
-    description: "Nurture leads and retain customers with personalized email campaigns.",
-    features: ["Campaign Design", "List Segmentation", "Automation", "A/B Testing"],
-  },
-  {
-    icon: <Target className="w-12 h-12 text-red-600" />,
-    title: "PPC Advertising",
-    description: "Maximize your ROI with data-driven PPC campaigns.",
-    features: ["Campaign Setup", "Bid Management", "Ad Copywriting", "Performance Tracking"],
-  },
-  {
-    icon: <BarChart3 className="w-12 h-12 text-yellow-600" />,
-    title: "Content Marketing",
-    description: "Create compelling content that resonates with your audience.",
-    features: ["Content Strategy", "Blog Writing", "Video Production", "Infographics"],
-  },
-  {
-    icon: <TrendingUp className="w-12 h-12 text-indigo-600" />,
-    title: "Conversion Optimization",
-    description: "Improve conversion rates with data-backed insights and testing.",
-    features: ["A/B Testing", "User Experience", "Landing Pages", "Analytics Setup"],
-  },
-];
+
 
 /* ----------------------------------
    HEADER & FOOTER
@@ -522,10 +485,10 @@ function ContactPage({ formData, onChange, onSubmit }) {
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <h3 className="font-semibold mb-3">Follow Us</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-blue-600 hover:text-blue-700 transition"><Facebook className="w-6 h-6" /></a>
-                  <a href="#" className="text-blue-600 hover:text-blue-700 transition"><Twitter className="w-6 h-6" /></a>
-                  <a href="#" className="text-blue-600 hover:text-blue-700 transition"><Linkedin className="w-6 h-6" /></a>
-                  <a href="#" className="text-blue-600 hover:text-blue-700 transition"><Instagram className="w-6 h-6" /></a>
+                  <button className="text-blue-600 hover:text-blue-700 transition"/><Facebook className="w-6 h-6" />
+                  <button className="text-blue-600 hover:text-blue-700 transition"><Twitter className="w-6 h-6" /></button>
+                  <button className="text-blue-600 hover:text-blue-700 transition"><Linkedin className="w-6 h-6" /></button>
+                  <button className="text-blue-600 hover:text-blue-700 transition"><Instagram className="w-6 h-6" /></button>
                 </div>
               </div>
             </div>
@@ -562,7 +525,7 @@ export default function App() {
   const [chatMessages, setChatMessages] = useState([{ type: "bot", text: "Hello! How can I help you today?" }]);
   const [chatInput, setChatInput] = useState("");
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", service: "", message: "" });
-  const [submissionStatus, setSubmissionStatus] = useState(null);
+  const [submissionStatus] = useState(null);
 const handleAdminLogin = () => {
   setIsAdmin(true);
   setCurrentPage("admin");

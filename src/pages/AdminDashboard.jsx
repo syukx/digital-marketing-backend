@@ -39,7 +39,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     fetchContacts();
-  }, []); // ✅ runs only once
+  }); // ✅ runs only once
 
   // ✅ Delete a contact safely
   const handleDelete = async (id) => {
