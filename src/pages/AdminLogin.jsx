@@ -7,7 +7,8 @@ export default function AdminLogin({ onLogin }) {
 
   // ✅ Detect environment type automatically
   const ADMIN_PASSWORD =
-    import.meta?.env?.VITE_ADMIN_PASSWORD || process.env.REACT_APP_ADMIN_PASSWORD;
+    process.env.REACT_APP_API_URL
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
