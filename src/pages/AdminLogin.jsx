@@ -6,7 +6,7 @@ export default function AdminLogin({ onLogin }) {
   const [error, setError] = useState("");
 
   // ✅ Your backend URL (make sure it matches your deployed backend)
-  const API_URL = "https://digital-marketing-backend-pxedg557e-syukxs-projects.vercel.app";
+  const API_URL = "https://digital-marketing-backend-pxedg557e-syukxs-projects.vercel.app/api/admin-password";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
