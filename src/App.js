@@ -584,21 +584,21 @@ const handleLogout = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   }, []);
 
-const handleSubmit = useCallback(async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
+  // ✅ Load the backend URL from .env
+  const API_URL = import.meta?.env?.VITE_API_URL || process.env.REACT_APP_API_URL;
+
   try {
-    const response = await fetch("http://localhost:4000/api/contact", {
+    const response = await fetch(`${API_URL}/api/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
 
-    const result = await response.json();
-
     if (response.ok) {
-      setSubmissionStatus("submitted");
-      console.log("✅ Saved:", result);
+      alert("✅ Message sent successfully!");
       setFormData({
         name: "",
         email: "",
@@ -608,12 +608,13 @@ const handleSubmit = useCallback(async (e) => {
         message: "",
       });
     } else {
-      alert(result.error || "Failed to submit form");
+      alert("⚠️ Failed to send message. Please try again.");
     }
   } catch (error) {
-    console.error("❌ Error submitting form:", error);
+    console.error("Error submitting form:", error);
+    alert("❌ Network error. Please try again later.");
   }
-}, [formData]);
+};
 
 
   const handleChatSubmit = useCallback(

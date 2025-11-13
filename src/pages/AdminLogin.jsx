@@ -1,4 +1,3 @@
-// frontend/src/pages/AdminLogin.jsx
 import React, { useState } from "react";
 import { Lock } from "lucide-react";
 
@@ -6,15 +5,24 @@ export default function AdminLogin({ onLogin }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // CHANGE THIS PASSWORD for your demo (or use env var approach described below)
-  const ADMIN_PASSWORD = "admin123";
+  // ✅ Detect environment type automatically
+  const ADMIN_PASSWORD =
+    import.meta?.env?.VITE_ADMIN_PASSWORD || process.env.REACT_APP_ADMIN_PASSWORD;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!ADMIN_PASSWORD) {
+      setError(
+        "⚠️ Admin password not set. Please add it to your .env file (VITE_ADMIN_PASSWORD or REACT_APP_ADMIN_PASSWORD)."
+      );
+      return;
+    }
+
     if (password === ADMIN_PASSWORD) {
       localStorage.setItem("isAdmin", "true");
       setError("");
-      onLogin(); // tell App we're logged in
+      onLogin();
     } else {
       setError("Incorrect password. Try again.");
     }
@@ -36,7 +44,9 @@ export default function AdminLogin({ onLogin }) {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+
           {error && <p className="text-red-600 text-sm">{error}</p>}
+
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition"

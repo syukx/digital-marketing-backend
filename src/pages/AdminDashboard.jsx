@@ -16,12 +16,13 @@ import {
 export default function AdminDashboard() {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = import.meta?.env?.VITE_API_URL || process.env.REACT_APP_API_URL;
 
   // Fetch contacts from backend
   const fetchContacts = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:4000/api/contact");
+      const response = await fetch(`${API_URL}/api/contacts`);
       const data = await response.json();
       setContacts(data);
     } catch (error) {
@@ -33,14 +34,14 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     fetchContacts();
-  }, []);
+  });
 
   // Delete a contact
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this contact?")) return;
 
     try {
-      await fetch(`http://localhost:4000/api/contact/${id}`, {
+      await fetch(`${API_URL}/api/contacts/${id}`, {
         method: "DELETE",
       });
       setContacts((prev) => prev.filter((c) => c.id !== id));
