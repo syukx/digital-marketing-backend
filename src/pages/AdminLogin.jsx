@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Lock } from "lucide-react";
 
-export default function AdminLogin({ onLogin }) {
+export default function AdminLogin({ onLogin }) { 
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
