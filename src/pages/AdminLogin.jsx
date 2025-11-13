@@ -1,31 +1,36 @@
 import React, { useState } from "react";
 import { Lock } from "lucide-react";
 
-export default function AdminLogin({ onLogin }) { 
+export default function AdminLogin({ onLogin }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // ✅ Detect environment type automatically
-  const ADMIN_PASSWORD =
-    process.env.REACT_APP_ADMIN_PASSWORD
+  // ✅ Your backend URL (make sure it matches your deployed backend)
+  const API_URL = "https://digital-marketing-backend-pxedg557e-syukxs-projects.vercel.app";
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    if (!ADMIN_PASSWORD) {
-      setError(
-        "⚠️ Admin password not set. Please add it to your .env file (VITE_ADMIN_PASSWORD or REACT_APP_ADMIN_PASSWORD)."
-      );
-      return;
-    }
+    try {
+      // ✅ Fetch the admin password from the backend
+      const response = await fetch(`${API_URL}/api/admin-password`);
+      const data = await response.json();
 
-    if (password === ADMIN_PASSWORD) {
-      localStorage.setItem("isAdmin", "true");
-      setError("");
-      onLogin();
-    } else {
-      setError("Incorrect password. Try again.");
+      if (!data.password) {
+        setError("⚠️ Admin password not set on the backend (.env missing).");
+        return;
+      }
+
+      if (password === data.password) {
+        localStorage.setItem("isAdmin", "true");
+        onLogin();
+      } else {
+        setError("Incorrect password. Try again.");
+      }
+    } catch (err) {
+      console.error("❌ Error verifying admin password:", err);
+      setError("Server error. Please try again later.");
     }
   };
 
